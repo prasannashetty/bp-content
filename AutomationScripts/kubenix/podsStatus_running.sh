@@ -6,4 +6,15 @@ while(("$beforeHelloWorld" != "$afterHelloWorld"))
 		OUTPUT=$(kubectl get po --all-namespaces | grep -i "Running" | wc -l)
 		afterHelloWorld=$OUTPUT
 		sleep 30
+		cnt=0
+    	pods_not_running_state=( $(kubectl get pods -n kube-system -o template --template="{{range.items}}{{if ne .status.phase \"Running\"}}{{.metadata.name}} {{end}}{{end}}" | tr " " "\n" | grep -i "kube-keepalived-vip") )
+	    for pod in ${pods_not_running_state[@]}
+		    do
+		        cnt=$(($cnt+1))
+		        kubectl delete pod $pod -n kube-system
+		    done
+		if [ $cnt -ne 0 ]
+	    then
+	        sleep 30
+	    fi
 	done
