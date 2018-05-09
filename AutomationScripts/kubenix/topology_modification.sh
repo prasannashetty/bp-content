@@ -11,7 +11,9 @@ do
         mv /root/topology1.json /root/topology.json
         jq ".clusters[0].nodes[$i].node.hostnames.storage = ([\"${ip}\"])" < /root/topology.json > /root/topology1.json
         mv /root/topology1.json /root/topology.json
-        jq ".clusters[0].nodes[$i].devices = ([\"\/dev\/xvdf\"])" < /root/topology.json > /root/topology1.json
+        jq ".clusters[0].nodes[$i].node.zone = 1" < /tmp/kubenix/topology.json > /tmp/kubenix/topology1.json
+        mv /tmp/kubenix/topology1.json /tmp/kubenix/topology.json
+        jq ".clusters[0].nodes[$i].devices = ([\"\/dev\/xvda\"])" < /root/topology.json > /root/topology1.json
         mv /root/topology1.json /root/topology.json
         i=$(($i+1))
         #IPHOSTNAMEMAP[$ip]=$hostName
