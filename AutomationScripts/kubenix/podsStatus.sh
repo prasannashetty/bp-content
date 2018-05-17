@@ -12,5 +12,7 @@ do
 	echo "\$afterJoin $afterJoin"
 	echo "\$OUTPUT $OUTPUT"
 	sleep 30
+	beforeJoin=$(kubectl get po --all-namespaces | wc -l)
+    beforeJoin=$(($beforeJoin-1))
 done
 echo "While loop Ended"
