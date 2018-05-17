@@ -8,6 +8,9 @@ while(("$beforeJoin" != "$afterJoin"))
 do
 	OUTPUT=$(kubectl get po --all-namespaces | grep -i "Running" | wc -l)
 	afterJoin=$OUTPUT
+	echo "\$beforeJoin  $beforeJoin"  
+	echo "\$afterJoin $afterJoin"
+	echo "\$OUTPUT $OUTPUT"
 	sleep 30
 done
 echo "While loop Ended"
