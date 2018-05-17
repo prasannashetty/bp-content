@@ -21,4 +21,5 @@ while(("$beforeHelloWorld" != "$afterHelloWorld"))
         beforeHelloWorld=$(($beforeHelloWorld-1))
         echo "\$beforeHelloWorld $beforeHelloWorld"
         echo "\$afterHelloWorld $afterHelloWorld"
+        echo "if never matching, verify /root/keepalived-cloud-provider.yaml updated with cidr value"
 	done
