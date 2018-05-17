@@ -2,6 +2,8 @@
 
 rm -rf /var/lib/kubelet/*
 echo "rm -rf /var/lib/kubelet/*" > /tmp/join_node.sh
+sleep 60
+echo "executing kubeadm init --pod-network-cidr=10.244.0.0/16 > /tmp/tmp_join_node.sh"
 kubeadm init --pod-network-cidr=10.244.0.0/16 > /tmp/tmp_join_node.sh
 echo "executed kubeadm command"
 cat "/tmp/tmp_join_node.sh" | grep "kubeadm join" >> /tmp/join_node.sh
