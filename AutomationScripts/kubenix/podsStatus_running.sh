@@ -19,4 +19,6 @@ while(("$beforeHelloWorld" != "$afterHelloWorld"))
 	    fi
 	    beforeHelloWorld=$(kubectl get po --all-namespaces | wc -l)
         beforeHelloWorld=$(($beforeHelloWorld-1))
+        echo "\$beforeHelloWorld $beforeHelloWorld"
+        echo "\$afterHelloWorld $afterHelloWorld"
 	done
