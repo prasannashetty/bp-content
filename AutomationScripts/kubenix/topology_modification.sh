@@ -1,6 +1,6 @@
 list_gfs_ip_address=( $(echo $1|tr "," "\n") )
 template_password=changeme
-template_username=ubuntu
+template_username=root
 #sudo su
 cp /root/topology.json.sample /root/topology.json
 i=0
