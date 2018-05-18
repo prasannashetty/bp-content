@@ -1,5 +1,5 @@
 list_gfs_ip_address=( $(echo $1|tr "," "\n") )
-template_password=changeme
+template_password=$2
 template_username=root
 echo "if root user password is not changeme, topology_modification.sh will fail to add manage hostname to topology.json"
 #sudo su
