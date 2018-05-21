@@ -1,4 +1,3 @@
-#!/bin/sh
 password=$1
 disk_type=$2
 sed -i 's/\[//g'  /root/node_addresses.txt
