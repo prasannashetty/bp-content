@@ -37,7 +37,7 @@ spec:
           mountPath: /etc/ssl/certs
         resources:
           requests:
-            cpu: 20m
+            cpu: 200m
       volumes:
       - name: certs
         hostPath:
