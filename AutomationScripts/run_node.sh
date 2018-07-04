@@ -16,6 +16,7 @@ do
     if [ $count = 1 ]
     then
     	sshpass -p $password  ssh  -o "StrictHostKeyChecking no" root@$node 'echo 1 >> /root/count.txt'
+	    sshpass -p $password  ssh  -o "StrictHostKeyChecking no" root@$node 'count=$(</root/count.txt);echo "$(ifconfig $(route | grep '^default' | grep -o '[^ ]*$') | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1) node$count.kubernetes.cluster" >> /etc/hosts;echo $((count+1)) > /root/count.txt;sudo hostname node$count.kubernetes.cluster'
     else
     	sshpass -p $password  scp  -o "StrictHostKeyChecking no" root@$previous_node:/root/count.txt root@node:/root/count.txt
 	    sshpass -p $password  ssh  -o "StrictHostKeyChecking no" root@$node 'count=$(</root/count.txt);echo "$(ifconfig $(route | grep '^default' | grep -o '[^ ]*$') | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1) node$count.kubernetes.cluster" >> /etc/hosts;echo $((count+1)) > /root/count.txt;sudo hostname node$count.kubernetes.cluster'
